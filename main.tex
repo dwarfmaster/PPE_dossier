@@ -1,0 +1,72 @@
+\documentclass{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage[top=2cm,bottom=2cm,left=3cm,right=3cm]{geometry}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{fancybox}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{tocloft}
+\usepackage{graphicx}
+\usepackage[raccourcis]{FAST}
+\usepackage{algorithm2e}
+\usepackage{circuitikz}
+\usepackage{tikz-er2}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+
+% Paramètres language
+\lstset{basicstyle=\normalsize,
+	numbers=left,
+	numberstyle=\color{black}\normalsize\textbf,
+	numbersep=7pt,
+	backgroundcolor=\color{white},
+	commentstyle=\color{black}\textit,
+	keywordstyle=\color{black}\textbf,
+	rulecolor=\color{black},
+	stringstyle=\color{black}\textit,
+	identifierstyle=\color{black},
+	frame=none,
+	showstringspaces=true,
+}
+
+\hypersetup{
+	colorlinks=true
+}
+
+\setcounter{tocdepth}{1} % Profondeur de la table de matières
+
+\title{Transporthor\\-- TPE --}
+\author{Luc Chabassier \and Arthur Sirech \and Charles Duhamel \and Patrice Rey \and Lucas Saliou}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\chapter{Introduction.}
+\input intro.tex
+
+\part{Mécanique.}
+\input meca.tex
+
+\part{Électrique.}
+\input elec.tex
+
+\part{Aspect logiciel.}
+\input log.tex
+
+\part{Annexes.}
+\appendix
+\input annex.tex
+
+\newpage
+\listoffigures
+\addcontentsline{toc}{chapter}{Liste des figures.}
+
+\end{document}
+
