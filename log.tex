@@ -1,10 +1,6 @@
-\chapter{Objectifs.}
-
-\chapter{Communication.}
-La communication avec l'utilisateur se basera principalement sur une communication bluetooth avec le smartphone de l'utilisateur. Peut de travail a été accomplit sur cette partie pour l'instant.
 
 \chapter{Suivit de l'utilisateur.}
-Pour le suivit de l'utilisateur, plusieurs idées ont été abordées, se basant d'abord sur l'utilisation d'ondes électromagnétiques, puis sur les caméras.
+Le suivit de l'utilisateur est une des premières tâches dont doit s'occuper le robot, et est l'une de ses fonctions principales. Plusieurs approches ont étés abordées, car peu d'entre elles ont aboutit.
 
 \section{Ondes électromagnétiques.}
 L'idée d'utiliser des ondes électromagnétiques vient d'un constat simple : tous les smartphones actuels ont des fonctionnalités Wifi et/ou bluetooth. Utiliser ces fonctionnalités pour le suivit de l'utilisateur permet d'éviter d'imposer à l'utilisateur le transport de matériel de localisation supplémentaire. De plus, les ondes électromagnétiques ont l'avantage de traverser la matière, permettant un suivit même lors d'une perte de vue du robot.
@@ -234,3 +230,5 @@ Une fois les images alignées, la calcul de la carte de disparité est relativem
 Une fois l'image binaire obtenue, il reste à en déduire la distance de chaque obstacle. Pour ce faire, l'algorithme va découper l'image horizontalement en plusieurs parties, puis pour chacune de ces parties, une détection des contours est effectuée. Le contours trop petits sont ignorés, car ils sont probablement des faux positifs. L'extrémité la plus basse des contours est calculée : c'est l'obstacle le plus proche, si l'on considère que tous les obstacles touchent le sol. Il reste à faire un lien entre la hauteur de l'obstacle sur l'image et sa distance par rapport au robot. Il faudra pour ce faire placer des obstacles à distance connue, trouver leur hauteur sur l'image, puis effectuer une regression sur ces couples de valeurs pour trouver la fonction faisant le lien.
 
 
+\chapter{Communication.}
+La communication avec l'utilisateur se basera principalement sur une communication bluetooth avec le smartphone de l'utilisateur. Peut de travail a été accomplit sur cette partie pour l'instant.
