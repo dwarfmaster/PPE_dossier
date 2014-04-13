@@ -100,7 +100,7 @@ Les différentes étapes de la transformation sont : \begin{enumerate}
         \includegraphics[width=0.75\linewidth]{rcs/hsv.png}
     \end{center}
     \caption{Présentation de l'espace de couleur \emph{HSV}.}
-    \label{HSV}
+    \label{hsv}
 \end{figure}
 
 
@@ -212,7 +212,7 @@ Une fois les images alignées, la calcul de la carte de disparité est relativem
 
 \subsection{Algorithme} L'idée de l'algorithme est assez simple : le sol est identifié par un histogramme, et chaque pixel de l'image est comparé à l'histogramme selon certains critères et sera classé comme appartenant au sol ou comme étant un obstacle. Afin d'affiner la détection, on décide de travailler dans l'espace de couleur \emph{HSV} et d'utiliser un procédé d'apprentissage. Lors de l'apprentissage, plusieurs images du sol seront analysées par un programme qui combinera leurs histogrammes et enregistrera l'histogramme résultant dans un fichier yaml. Ce fichier sera chargé par le robot qui l'utilisera pour différencier le sol des obstacles. Il ne peut donc fonctionner que sur un seul type de sol, ce qui n'est pas particulièrement gênant, puisqu'il est sensé fonctionner dans un seul lieu.
 
-\subsection{Simulation} Afin de tester si le principe de l'algorithme est valable, on crée à l'aide du logiciel \emph{Blender} un environnement virtuel qui possède toutes les caractéristiques nécessaires : un sol unit et uniforme, plat, et des obstacles de couleur différente. Les résultats, certains exposés dans la figure \ref{abod_simu}, sont plus que satisfaisants, avec très peu de faux positifs et presque aucun faux négatifs. On observe que l'algorithme résiste bien aux \emph{tâches} de lumière spéculaire, en ne les marquant pas comme obstacle.
+\subsection{Simulation} Afin de tester si le principe de l'algorithme est valable, on crée à l'aide du logiciel \emph{Blender} un environnement virtuel qui possède toutes les caractéristiques nécessaires : un sol unit et uniforme, plat, et des obstacles de couleur différente. Les résultats, certains exposés dans la figure \ref{abod_simu}, sont plus que satisfaisants, avec très peu de faux positifs et presque aucun faux négatifs. On observe que l'algorithme résiste bien aux tâches de lumière spéculaire, en ne les marquant pas comme obstacle.
 
 \begin{figure}
     \begin{center}
@@ -227,6 +227,7 @@ Une fois les images alignées, la calcul de la carte de disparité est relativem
     \label{abod_simu}
 \end{figure}
 
+\subsection{Expérience.}
 % TODO expérience
 
 \subsection{Déduction de la distance.}
