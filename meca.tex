@@ -1,0 +1,98 @@
+\chapter{La direction.}
+
+\section{Idée départ} 
+Pour la direction nous sommes partis du système directionnel automobile.  Nous avions aussi prévu d’insérer éventuellement des amortisseurs pour éviter les chocs trop violents à l’avant qui pourraient abîmer la partie commande de notre projet
+
+\section{Expériences et réalisation.}
+La première étape de la réalisation a été de monter une modélisation SolidWorks de notre future direction. 
+% TODO Intégrer une image SolidWorks
+
+Nous avons ainsi pu mieux identifier les composants dont nous aurions besoin pour la réalisation et pour les expériences. Nous avons aussi accompagné cette étape par  une modélisation  calculatoire pour préciser notre aperçu du montage final et finaliser la modélisation virtuelle de la direction.
+Pour ce faire nous avons d’abord cherché une formule nous permettant de calculer la force nécessaire pour faire tourner nos roues et ainsi dimensionner notre moteur. Nous avons choisi un moteur pas à pas pour avoir un contrôle de la direction précis à 1,8 degré près. Cependant faute de temps nous n’utilisons que trois état pour notre direction: à gauche, tout droit et enfin à droite.
+
+Le premier calcul que nous avons fait est l’estimation de la force nécessaire pour faire pivoter nos roues. La formule utilisée est: $Fr = m * \frac{V^2}{R}$,  avec $Fr$ la force de guidage  (nécessaire pour faire tourner nos roues),  $m$ la masse de notre projet, $V$ sa vitesse et $R$ le rayon de la trajectoire (ou rayon de braquage)
+
+Pour avoir la puissance maximum nécessaire du moteur nous avons alors fixé la vitesse au maximum soit $V=2.5m*s^{-1}$ ,  la masse au maximum soit $m= 15kg$. Puis nous avons cherché à déterminer le rayon de braquage minimal que nous pourrions avoir, soit l’angle notre angle de braquage maximal. C’est-à-dire que nous voulions la force de guidage maximum suffisant pour faire pivoter nos roues. N’ayant pas encore déterminé notre angle de braquage maximal nous sommes partis sur la base d’un angle de braquage maximal de 45 degrés. 
+
+Nous avons ensuite appliqué la formule   $R = \frac{E}{sin \alpha}$ , trouvée puis démontrée (il suffit d’exprimer $sin \alpha$ en fonction et $E$ et $R$ et de faire un schéma, Pythagore devra être utilisé). Avec $\alpha$ = angle de braquage, R = rayon de braquage, et E empattement. Nous avons alors $R = 0.6/sin(45) = 0.85m$, ce qui nous donne Force de braquage = $\frac{15*2.5^2}{0.85} = 110N$.
+
+Pour déterminer le puissance du moteur nous avons ensuite calculé la vitesse maximale nécessaire pour notre moteur pas à pas.
+Pour ce faire nous avons tout d’abord cherché la taille suffisante de la crémaillère pour avoir un angle de braquage de 30 ou  45 degrés.  
+
+Ce qui veut dire que pour un angle de 30 degrés, la crémaillère devra avoir de chaque côté: $sin(30)*5 = 2.5 cm$.
+
+Pour un angle de 45 degrés, soit l’angle maximum espéré, nous trouvons alors que la crémaillère devra se déplacer de $sin(45)*5 = 3.53cm$.
+
+Ensuite nous avons admis que pour avoir une direction la plus réactive possible, ces distances devraient être parcourues en 1 seconde ou moins. Dès lors cela implique que la vitesse du moteur soit de $0.04m*s^{-1}$, pour un angle maximum de 45 degrés; et $0.03m*s^{-1}$ pour un angle maximal de 30 degrés.
+
+Nous avons désormais, la force et la puissance nécessaire du moteur pour parvenir à faire pivoter les roues directionnelles, soit la possibilité de déterminer la puissance de notre moteur et ainsi de % TODO Whaaat !
+
+Grâce à la formule: $\vc{P} = \vc{F}*V$ (avec $\vc{P}$ = puissance; $\vc{F}$ = vecteur force et $V$ la vitesse). Nous avons $P= 110*0.04*cos(0) = 4,40 W$, soit une puissance utile de notre moteur à $4.40W$, en prenant une marge de sécurité (en effet dans tous nos calculs les frottements sont négligés), cela nous donne un moteur d’au moins $5W$. ( Le calcul pour un angle de 30degré n’a pas été réalisé étant donné que nous cherchions la puissance maximale de notre moteur).
+
+Un peu surpris par le résultat, nous avons opéré une seconde vérification en cherchant le couple du moteur, pour utiliser la formule $P= C*\omega$ (avec $P$ = puissance; $C$ = couple du moteur, et $\omega$ = Vitesse angulaire).
+
+Tout d’abord, sachant que  $V = \omega*R$ (avec $V$ la vitesse; $\omega$ la vitesse angulaire et $R$ la rayon(centre de l’axe du moteur au point de contact avec la crémaillère cette distance s’annule dans la formule, finalement elle compte peut est peu importe si les paramètre de R sont mal choisis))   , nous en déduisons $\omega = \frac{V}{R}$, soit $\omega = 0.04/0.016 = 2.50 rad*s^{-1}$
+
+Le moment étant $Mo(\vc{F}) = \vc{F}*d$ (=rayon centre axe du moteur-point de contact, (on la retrouve ici, et c’est pourquoi elle s’annule)). Nous en déduisons $Mo(\vc{F}) = 110*0.016 = 1.76 N*m$. Ce qui nous donne: $P = 2.50 * 1.76 = 4.40  W$.
+
+Nous retrouvons la même puissance, dans les deux cas, nous avons donc conclus que notre moteur pas à pas devait avoir au minimum une puissance de 5W. Pour des raisons de coût, nous avons d’abord cherché dans le matériel scolaire. Le moteur que nous y avons trouvé (réf RS 440-458), a pour Puissance ( U*I ) soit $12*0.6 = 7.2W$. 
+Malgré sa puissance un peu surdimensionnée, nous l’avons conservé car cela nous permet d’agrandir notre marge de sécurité, et surtout d’éviter des surcoûts éventuels.
+Après toutes ces étapes nous avons enfin notre moteur pas à pas et la dimension de notre crémaillère (au moins 2*4 soit 8cm). 
+
+L’étape suivante a donc été l’expérimentation, pour vérifier nos calculs et pouvoir mieux cerner les difficultés que nous pourrions rencontrer lors de la réalisation de l’étape finale.
+Nous avons alors mis au point une expérience qui nous permettrait de vérifier le parallélisme de nos roues directionnelles (en effet nous avions des doutes sur montage de la direction, et notamment  sur la conservation du parallélisme des roues de la direction), l’angle de braquage atteint en fonction de la taille de la crémaillère et enfin observer les différents problèmes rencontrer lors du montage du Prototype Directionnel 1.0 (que nous appellerons P.D 1.0 par la suite).
+% TODO Images de PD 1.0
+
+Nous avons donc testé notre prototype. Cela consistait à remplacer la crémaillère par un bout de bois dont nous faisions varier la longueur pour mesurer, à l’aide de rapporteurs placés sous les deux roues directionnelles, l’angle de braquage en fonction de la longueur de la crémaillère : \begin{itemize}
+    \item Pour une crémaillère de $20cm$, les genouillères sortent trop du châssis, elle ne convient pas.
+    \item La crémaillère de 19cm a le même souci, elle ne convient pas non plus.
+    \item La crémaillère de 18cm: le parallélisme est conservé, les angles de braquage observés sont de 27 degrés. Nous avons ainsi avec une crémaillère de 18cm un angle maximale approximativement égal à 27 degrés, Cependant les genouillères sortent toujours un peu du châssis. Mais l’angle de braquage maximal atteint diminuant avec la taille de la crémaillère nous avons décidés de vérifier la distance parcourue  pour réaliser un quart de tour.
+
+        Avec la formule $R= \frac{E}{sin \alpha}$. Nous avons alors un rayon de la trajectoire de $1.32m$ soit un cercle de $2\pi R = 8.3m$. C’est-à-dire un quart de cercle de $2.07m$, avec une corde à $1.86m$.
+    \item La crémaillère de 17cm: le parallélisme est conservé, et les angles de braquage mesurés sont de 23 degrés.
+Soit un rayon de braquage de $1.54m$ et un quart de cercle de $2.41m$ avec une corde de $2.12m$.
+%TODO schéma
+\end{itemize}
+
+Face à l’augmentation rapide de la distance à parcourir pour réaliser un quart de tour en fonction de la diminution de la taille de la crémaillère, nous sommes arrivés à la conclusion que la crémaillère de 18cm prévaut sur celle de 17cm. Nous tout de même décider de ne pas en prendre une de 19cm, étant donné que les genouillères sortent trop du châssis ce qui rend la direction plus vulnérable aux éléments extérieurs.
+
+Cependant les résultats de notre expérience sont relativement approximatifs, en effet suite à la rencontre de différents problèmes lors de la réalisation de P.D 1.0, la précision n’était pas excellente. Ensuite la crémaillère n’est en aucun cas utilisée totalement, c’est-à-dire qu’il y a une perte lors de la fixation de celle-ci dans les genouillères, et que seulement 6 à 8cm sur 18cm sont réellement disponible pour l’utilisation (c’est pourquoi le résultat final de l’expérience est si faible: angle de braquage inférieur à 30 degrés).
+
+%TODO schéma papier
+Enfin la réalisation de ce prototype nous a permis d’évaluer l’encoche nécessaire dans le châssis pour faire tourner les roues et de nous rendre compte à quel point la précision lors de la fixation du couloir de glissement de la crémaillère est importante. De plus cela nous as aussi permis d’ordonner la réalisation de la direction de notre maquette.
+
+A ce stade là nous avons alors toute la théorie et la pratique suffisante pour passer à la réalisation de notre direction finale. Avec un moteur de 7.2W, et une crémaillère de 18cm. S’ajoute à ce matériel, différents tubes métalliques pour la constitution des diverses pièces (liaisons pivot, biellette, et axes), des équerres, deux genouillères, deux roues et deux plaques de plexiglass percées au préalable pour y fixer des équerres et l’axe de chaque roue.  
+
+\section{Résultats finaux.}
+Sur notre maquette finale un quart de cercle réalisé en 
+
+\chapter{La propulsion.}
+L’étape suivant à consister au choix du moteur de partie propulsion du projet et à la réalisation, puis au choix du notre réducteur. \emph{Sur cette partie-là, c’est Lucas qui a tous les calculs. Il ne faut pas qu’il oublie de préciser la vitesse finale réelle espérée.}
+
+\section{Le choix du moteur.}
+
+
+\section{La réalisation puis le dimensionnement de notre motoréducteur.}
+
+
+
+\chapter{Aspect esthétiques, pourquoi ces matériaux?}
+\emph{Partie éventuellement à compléter avec le cour de Boulouch sur la résistance des matériaux. Pour le moment la seule chose à dire sur le sujet est que nous avons choisis du mettre du plexi pour nos boîtes pour avoir un côté plus «fun»… (Et pour laisser le tout apparent au jury;p )}
+
+\chapter{Les différents éléments de la réalisation.}
+\section{La fixation de la valise.}
+La première solution émise consistait à tenir l’objet transporté à l’aide de sangles, posées en bas des caissons plexis et de chaque côté du projet, pour maintenir le bas de celui-ci. Et de tenir le haut à l’aide de deux bras télescopiques rangés dans les caissons quand ils ne sont pas nécessaires et dépliés lorsque l’élément déplacé est haut, à savoir plus de 20cm (ce qui correspond à la hauteur des deux caissons). 
+
+La seconde plus simple et moins difficile à mettre en place, consiste à placer une sangle au sommet des deux caissons, que nous faisons passer à travers deux anneaux. Cette solution a été retenue car, en plus de sa facilité de réalisation, elle présente l’intérêt d’être largement suffisante pour maintenir les éléments posés sur la valise en fonction de notre vitesse (c’est-à-dire moins de 9km/h)
+
+\section{La dimension du projet.}
+\subsection{La maquette.}
+Les dimensions de la maquette ont été réduites pour des raisons pratiques. C’est-à-dire pour faciliter son transport. 
+\begin{itemize}
+    \item Le châssis (ou planche en bois) fait 700mm*300mm*10mm
+    \item Le projet est constitué de deux grandes parties: un espace de 30cm, pour poser les objets et les caissons, de 300mm*200mm*200mm. Nous y plaçons les parties commande, opérative et traitement de l’information. Autrement dit à l’avant sera la partie directionnelle, la pandaboard, l’arduino, et sur le caisson la  caméra  (ici il faudra peut-être que tu complètes…)
+\end{itemize}
+
+\subsection{Le projet final.}
+Le châssis fait 1100mm*400*10mm
+
