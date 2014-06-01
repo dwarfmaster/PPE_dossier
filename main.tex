@@ -262,11 +262,19 @@ Une fois les images alignées, la calcul de la carte de disparité est relativem
 
 \begin{figure}
     \begin{center}
-        \begin{tabular}{cc}
+        \begin{tabular}{|cc|}
+            \hline
             \textbf{Caméra} & \textbf{Résultat} \\
+            \hline
             \includegraphics[width=0.4\linewidth]{rcs/abodv0s.png} & \includegraphics[width=0.4\linewidth]{rcs/abodv0r.png} \\
+            \multicolumn{2}{|c|}{$1.7\%$ du sol anoncé obstacle et $0.1\%$ des obstacles anoncé sol.} \\
+            \hline
             \includegraphics[width=0.4\linewidth]{rcs/abodv1s.png} & \includegraphics[width=0.4\linewidth]{rcs/abodv1r.png} \\
+            \multicolumn{2}{|c|}{$1.7\%$ du sol anoncé obstacle et $0\%$ des obstacles anoncé sol.} \\
+            \hline
             \includegraphics[width=0.4\linewidth]{rcs/abodv2s.png} & \includegraphics[width=0.4\linewidth]{rcs/abodv2r.png} \\
+            \multicolumn{2}{|c|}{$0\%$ du sol anoncé obstacle et $1.2\%$ des obstacles anoncé sol.} \\
+            \hline
         \end{tabular}
     \end{center}
     \caption{Résultats de l'approche \emph{ABOD} dans l'environnement virtuel.}
@@ -274,7 +282,6 @@ Une fois les images alignées, la calcul de la carte de disparité est relativem
 \end{figure}
 
 \subsubsection{Expérience.}
-% TODO expérience
 
 \subsubsection{Déduction de la distance.}
 Une fois l'image binaire obtenue, il reste à en déduire la distance de chaque obstacle. Pour ce faire, l'algorithme va découper l'image horizontalement en plusieurs parties, puis pour chacune de ces parties, une détection des contours est effectuée. Le contours trop petits sont ignorés, car ils sont probablement des faux positifs. L'extrémité la plus basse des contours est calculée : c'est l'obstacle le plus proche, si l'on considère que tous les obstacles touchent le sol. Il reste à faire un lien entre la hauteur de l'obstacle sur l'image et sa distance par rapport au robot. Il faudra pour ce faire placer des obstacles à distance connue, trouver leur hauteur sur l'image, puis effectuer une regression sur ces couples de valeurs pour trouver la fonction faisant le lien.
