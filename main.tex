@@ -306,10 +306,6 @@ Par contre, lorsque cet algorithme est soumis à un environnement réel, les ré
 \subsubsection{Déduction de la distance.}
 Une fois l'image binaire obtenue, il reste à en déduire la distance de chaque obstacle. Pour ce faire, l'algorithme va découper l'image horizontalement en plusieurs parties, puis pour chacune de ces parties, une détection des contours est effectuée. Le contours trop petits sont ignorés, car ils sont probablement des faux positifs. L'extrémité la plus basse des contours est calculée : c'est l'obstacle le plus proche, si l'on considère que tous les obstacles touchent le sol. Il reste à faire un lien entre la hauteur de l'obstacle sur l'image et sa distance par rapport au robot. Il faudra pour ce faire placer des obstacles à distance connue, trouver leur hauteur sur l'image, puis effectuer une regression sur ces couples de valeurs pour trouver la fonction faisant le lien.
 
-
-\section{Communication.}
-La communication avec l'utilisateur se basera principalement sur une communication bluetooth avec le smartphone de l'utilisateur. Peut de travail a été accomplit sur cette partie pour l'instant.
-
 \newpage
 \listoffigures
 \addcontentsline{toc}{chapter}{Liste des figures.}
