@@ -283,6 +283,25 @@ Une fois les images alignées, la calcul de la carte de disparité est relativem
 \end{figure}
 
 \subsubsection{Expérience.}
+Par contre, lorsque cet algorithme est soumis à un environnement réel, les résultats sont bien moins satisfaisants (voir figure \ref{abod_exp}) : les obstacles sont mal détectés, dans le meilleur des cas. Cela peut être du à un algorithme trop laxiste quand à la détection des obstacles, mais toute tentative de durcir l'algorithme conduit à la situation inverse : le sol est indiqué comme obstacle. De toute façon, les résultats obtenus sont suffisants pour éviter la majorité des obstacles.
+
+\begin{figure}
+    \begin{center}
+        \begin{tabular}{|cc|}
+            \hline
+            \textbf{Caméra} & \textbf{Résultat} \\
+            \hline & \\
+            \includegraphics[width=0.4\linewidth]{rcs/abodr0s.png} & \includegraphics[width=0.4\linewidth]{rcs/abodr0r.png} \\
+            \multicolumn{2}{|c|}{$0\%$ du sol annoncé comme obstacle et $51.8\%$ des obstacles annoncé comme sol.} \\
+            \hline & \\
+            \includegraphics[width=0.4\linewidth]{rcs/abodr1s.png} & \includegraphics[width=0.4\linewidth]{rcs/abodr1r.png} \\
+            \multicolumn{2}{|c|}{$0.7\%$ du sol annoncé comme obstacle et $41.9\%$ des obstacles annoncé comme sol.} \\
+            \hline
+        \end{tabular}
+    \end{center}
+    \caption{Résultats de l'approche \emph{ABOD} en environnement réel.}
+    \label{abod_exp}
+\end{figure}
 
 \subsubsection{Déduction de la distance.}
 Une fois l'image binaire obtenue, il reste à en déduire la distance de chaque obstacle. Pour ce faire, l'algorithme va découper l'image horizontalement en plusieurs parties, puis pour chacune de ces parties, une détection des contours est effectuée. Le contours trop petits sont ignorés, car ils sont probablement des faux positifs. L'extrémité la plus basse des contours est calculée : c'est l'obstacle le plus proche, si l'on considère que tous les obstacles touchent le sol. Il reste à faire un lien entre la hauteur de l'obstacle sur l'image et sa distance par rapport au robot. Il faudra pour ce faire placer des obstacles à distance connue, trouver leur hauteur sur l'image, puis effectuer une regression sur ces couples de valeurs pour trouver la fonction faisant le lien.
