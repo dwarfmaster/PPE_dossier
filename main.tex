@@ -174,7 +174,7 @@ Pour l'instant, deux approches ont été explorées : la stéréo vision et une 
 \subsection{Stéréo vision.}
 \subsubsection{Principe.} L'idée de la stéréo vision est d'utiliser deux ou plus caméras (deux dans notre cas), et à partir des caractéristiques et positions des caméras, déduire la position dans l'espace de tout point présent sur les deux caméras. L'objectif étant d'obtenir une carte de disparité, présentant la profondeur de chaque pixel par un niveau de gris. La figure \ref{disparity} montre un exemple de carte de disparité parfaite.
 
-% TODO add link
+Un code permettant de tester l'avancement de cet algorithme est disponible \cite{ppestereo}.
 
 \begin{figure}
     \begin{center}
@@ -338,7 +338,8 @@ Une fois l'image binaire obtenue, il reste à en déduire la distance de chaque 
     \bibitem{ppeandro}  Code android : \url{https://github.com/lucas8/PPE_android}
     \bibitem{mygithub}  Mon Github : \url{https://github.com/lucas8}
     \bibitem{ppefollow} Test du suivit : \url{https://github.com/lucas8/PPE_follow}
-    \bibitem{ppedos}    Source \LaTeX de ce document : \url{https://github.com/lucas8/PPE_dossier}
+    \bibitem{ppedos}    Source \LaTeX\ de ce document : \url{https://github.com/lucas8/PPE_dossier}
+    \bibitem{ppestereo} Code de la stéréovision : \url{https://github.com/lucas8/stereo_calibration/tree/last_algo}
 \end{thebibliography}
 
 \end{document}
