@@ -50,6 +50,21 @@
 \maketitle
 \tableofcontents
 
+\section{Introduction.}
+Ce document présente le travail que j'ai fait pour mon PPE. L'objectif du PPE était de créer un porte valise capable de suivre une personne en lui portant sa valise en autonomie. Un image du projet tel qu'il était à la fin de l'année est disponible sur la figure \ref{photo_final}.
+
+Je me suis principalement occupé de la partie programmation, ce qui comportait le suivi de l'utilisateur et la détection des obstacles. Afin de gérer l'aspect calculatoire de certaine partie, les décisions étaient faite sur une pandaboard puis transmissent à une arduino. Le code exécuté sur l'arduino \cite{ppeardui} et celui sur la pandaboard \cite{ppefinal} sont tous deux accessibles sur mon github \cite{mygithub}. On y trouve aussi un début de code pour le support d'un smartphone android \cite{ppeandro} qui n'a jamais eu le temps d'être finie.
+
+Ce document a été rédigé en \LaTeX, et est lui aussi disponible sur github \cite{ppedos}, mais sans les ressources graphiques (trop lourdes pour être versionnées).
+
+\begin{figure}
+    \begin{center}
+        \includegraphics[width=0.7\linewidth]{rcs/photofinal.png}
+    \end{center}
+    \caption{Le projet tel qu'il était à la fin de l'année.}
+    \label{photo_final}
+\end{figure}
+
 \section{Suivit de l'utilisateur.}
 Le suivit de l'utilisateur est une des premières tâches dont doit s'occuper le robot, et est l'une de ses fonctions principales. Plusieurs approches ont étés abordées, car peu d'entre elles ont aboutit.
 
@@ -136,11 +151,12 @@ Il n'y a pas de concept mathématique derrière cette approche : le robot va jus
 
 Les différentes étapes de la transformation sont : \begin{enumerate}
     \item L'image obtenue est mise dans l'espace de couleur \emph{HSV} (\emph{Hue}, \emph{Saturation}, \emph{Value}, soit teinte, saturation, valeur en français) : cet espace de couleur d'identifier une couleur en séparant cette information de l'intensité lumineuse et de la saturation, ce qui permet de retrouver la couleur même si elle est altérée par la luminosité ambiante (voir figure \ref{hsv}).
-    \item L'image est ensuite binarisée suivant un modèle très simple : les trois composantes sont testées, vérifiant si elles font parties d'un encadrement préalablement déterminé. Si les trois sont validé, le pixel est mis à 1 (couleur blanche), sinon il est mis à 0 (couleur noir). Afin de déterminer ces encadrements, un programme de test a été écrit permettant de les modifier dynamiquement pour voir la meilleur combinaison possible. % TODO screenshot du programme
+    \item L'image est ensuite binarisée suivant un modèle très simple : les trois composantes sont testées, vérifiant si elles font parties d'un encadrement préalablement déterminé. Si les trois sont validé, le pixel est mis à 1 (couleur blanche), sinon il est mis à 0 (couleur noir). Afin de déterminer ces encadrements, un programme de test a été écrit permettant de les modifier dynamiquement pour voir la meilleur combinaison possible \cite{ppefollow}.
     \item Un algorithme de détection de contours est ensuite appliqué à l'image pour obtenir la liste des tâche blanches sur l'image. Leur aire est calculée et seule la tâche blanche avec l'aire la plus importante est gardée, ce qui permet d'éliminer les faux positifs. Si l'aire de la tâche la plus grande est trop petite, le programme considère que l'utilisateur est sorti de son champ de vision et se stoppe.
     \item Le rectangle encadrant le contour maximum est calculé, puis son centre en est déduit. Le point ainsi obtenu est considéré comme étant la position de l'utilisateur dans l'image.
-        %TODO Figure présentant les différentes étapes
 \end{enumerate}
+
+Le code final est intégré dans le code du projet \cite{ppefinal}.
 
 \begin{figure}
     \begin{center}
@@ -157,6 +173,8 @@ Pour l'instant, deux approches ont été explorées : la stéréo vision et une 
 
 \subsection{Stéréo vision.}
 \subsubsection{Principe.} L'idée de la stéréo vision est d'utiliser deux ou plus caméras (deux dans notre cas), et à partir des caractéristiques et positions des caméras, déduire la position dans l'espace de tout point présent sur les deux caméras. L'objectif étant d'obtenir une carte de disparité, présentant la profondeur de chaque pixel par un niveau de gris. La figure \ref{disparity} montre un exemple de carte de disparité parfaite.
+
+% TODO add link
 
 \begin{figure}
     \begin{center}
@@ -249,6 +267,8 @@ Une fois les images alignées, la calcul de la carte de disparité est relativem
 \subsection{Approche ABOD.}
 \subsubsection{Principe} L'idée de cet algorithme est d'identifier l'apparence du sol sur le flux vidéo d'une caméra et à partir de là de différentier le sol des obstacles en se basant sur leur apparence (un exemple de résultat peut être observé sur la figure \ref{abod}). Cette algorithme possède quelques limites cependant : un obstacle comme un bord de table apparaissant dans un coin sera repéré comme un objet éloigné. En général, un obstacle \emph{volant} sera considéré comme au sol mais éloigné.
 
+Le code final est intégré dans le programm final \cite{ppefinal}, mais une version seule intégrant des exécutables pour l'apprentissages et le traitement d'images et de flux vidéos est aussi disponible \cite{ppeabod}.
+
 \begin{figure}
     \begin{center}
         \includegraphics[width=0.8\linewidth]{rcs/abod.png}
@@ -307,8 +327,19 @@ Par contre, lorsque cet algorithme est soumis à un environnement réel, les ré
 Une fois l'image binaire obtenue, il reste à en déduire la distance de chaque obstacle. Pour ce faire, l'algorithme va découper l'image horizontalement en plusieurs parties, puis pour chacune de ces parties, une détection des contours est effectuée. Le contours trop petits sont ignorés, car ils sont probablement des faux positifs. L'extrémité la plus basse des contours est calculée : c'est l'obstacle le plus proche, si l'on considère que tous les obstacles touchent le sol. Il reste à faire un lien entre la hauteur de l'obstacle sur l'image et sa distance par rapport au robot. Il faudra pour ce faire placer des obstacles à distance connue, trouver leur hauteur sur l'image, puis effectuer une regression sur ces couples de valeurs pour trouver la fonction faisant le lien.
 
 \newpage
+\addcontentsline{toc}{section}{Liste des figures.}
 \listoffigures
-\addcontentsline{toc}{chapter}{Liste des figures.}
+
+\newpage
+\addcontentsline{toc}{section}{Liste des liens.}
+\begin{thebibliography}{1}
+    \bibitem{ppefinal}  Code principal : \url{https://github.com/lucas8/PPE}
+    \bibitem{ppeardui}  Code arduino : \url{https://github.com/lucas8/PPE_arduino}
+    \bibitem{ppeandro}  Code android : \url{https://github.com/lucas8/PPE_android}
+    \bibitem{mygithub}  Mon Github : \url{https://github.com/lucas8}
+    \bibitem{ppefollow} Test du suivit : \url{https://github.com/lucas8/PPE_follow}
+    \bibitem{ppedos}    Source \LaTeX de ce document : \url{https://github.com/lucas8/PPE_dossier}
+\end{thebibliography}
 
 \end{document}
 
